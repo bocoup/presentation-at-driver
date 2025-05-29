@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Automating Assistive Tech with Standards</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/serif.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<style>.reveal a { color: #a00; }</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown data-separator-notes="^Note:">
+					<textarea data-template>
+# Automating Assistive Tech with Standards
+
+---
+
+## Hello!
+
+<img class="r-stretch" src="bob-bust.png" alt="The Bocoup logo: a cartoon rendering of a rooster" />
+
+[Bocoup, a worker-owned tech consultancy](https://bocoup.com)  
+Mike Pennisi & Chris Cuellar, worker-owners
+
+---
+
+### Who cares what the computer says?
+
+<img class="r-stretch" style="float: left" src="computers-speak.jpg" />
+
+- End users
+- Web authors
+- Browser implementers
+- Assistive technology implementers
+
+---
+
+### Modern automation efforts
+
+**[Craig Morten's GuidePup](https://www.guidepup.dev/)** - subscribe to a
+stream of speech being read by screen readers
+
+**[W3C's WebDriver](https://w3c.github.io/webdriver/)** - query the
+accessibility tree for fundamental values like ["computed
+role"](https://w3c.github.io/webdriver/#get-computed-role)
+
+**[W3C's AOM + WebDriver](https://github.com/WICG/aom/issues/203)** - query the
+accessibility tree for even more properties such as
+["required"](https://w3c.github.io/core-aam/#event-aria-required)
+
+**[Igalia's Acacia](https://github.com/web-platform-tests/rfcs/pull/204)** -
+query the [platform accessibility API mapping](https://w3c.github.io/core-aam/)
+
+Note:
+
+- GuidePup
+  - available today
+  - empowers developers to understand how their work is presented to screen
+    reader users
+  - limited to one type of AT: screen readers
+  - not currently on a standards track
+- WebDriver
+  - available today
+  - weakness: limited scope
+- AOM + WebDriver
+  - being designed as we speak
+  - clear deployment path (extension to an existing standard)
+- Acacia
+  - enables automated testing of a novel surface: the accessibility API mapping
+  - only accessible from [the Web Platform
+    Tests](https://github.com/web-platform-tests/wpt)
+
+---
+
+## AT Driver
+
+> A standard protocol for introspection and remote control of assistive
+> technology software, using a bidirectional communication channel.
+
+https://github.com/w3c/at-driver
+
+---
+
+## AT Driver: protocol
+
+TODO: insert a flow diagram that describes how a "press keys" user intent
+causes a screen reader to respond with a "captured output" event
+
+---
+
+## AT Driver: in action
+
+TODO: record a running ARIA-AT test and insert it here
+
+---
+
+## AT Driver: vitals
+
+- Chartered under [the W3C's Browser Testing and Tools Working
+  Group](https://www.w3.org/groups/wg/browser-tools-testing/)
+- Inspiration from [WebDriver BiDi](https://github.com/w3c/webdriver-bidi/)
+  (JSON over WebSockets, "remote end"/"local end" abstractions, "command" and
+  "event" patterns)
+- Distinction: these user agents are not web browsers. There is no "browsing
+  session," no "DOM", no "elements," etc.
+
+---
+
+TODO: Overlay representation of each project's purview
+
+![](acacia-diagram.png)
+
+---
+
+## Implementation status
+
+<table style="font-size: 0.5em">
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>maintainer</th>
+      <th>tech</th>
+      <th>status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Windows AT Driver Server</td>
+      <td><a href="https://bocoup.com">Bocoup</a></td>
+      <td>TTS voice &amp; OS key press simulation</td>
+      <td>defunct</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/Prime-Access-Consulting/nvda-at-automation">NVDA AT Driver Server</a></td>
+      <td><a href="https://pac.bz/">Prime Access Consulting</a></td>
+      <td>screen reader add-on</td>
+      <td>active</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/bocoup/at-driver-servers/">macOS AT Driver Server</a></td>
+      <td><a href="https://bocoup.com">Bocoup</a></td>
+      <td>TTS voice &amp; OS key press simulation</td>
+      <td>active</td>
+    </tr>
+    <tr>
+      <td>JAWS AT Driver Server</td>
+      <td><a href="https://vispero.com/">Vispero</a></td>
+      <td>screen reader DLL</td>
+      <td>in development</td>
+    </tr>
+  <tbody>
+</table>
+
+---
+
+## Shoutout ARIA-AT
+
+<iframe
+  src="https://player.vimeo.com/video/651279608?h=45aefd646f&amp;byline=false&amp;dnt=true&amp;portrait=false"
+  width="640" height="340" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen="" title="ARIA-AT Video">
+</iframe>
+
+https://aria-at.w3.org
+
+Note:
+
+The ARIA-AT Community Group is actively working to define expectations for the
+behavior of assistive technology and to promote implementation correctness.
+We've been developing AT Driver to support their work, but we anticipate the
+protocol's eventual use by web authors.
+
+---
+
+## Future
+
+- Define a collection of "intents" (first up: [activate element](https://github.com/w3c/at-driver/pull/82))
+- Extend beyond screen readers
+- Extend beyond the web platform?
+
+Note:
+
+- Other user intents might include things like "move to next heading" or "move
+  to previous form field"
+- Other assistive technologies might include braille displays or magnifiers
+- This protocol could be used to write automated tests for native applications,
+  though it's unclear if the use of WebSockets would be a significant
+  impediment to adoption.
+					</textarea>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				slideNumber: 'c/t',
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
