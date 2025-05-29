@@ -12,14 +12,39 @@
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-		<style>.reveal a { color: #a00; }</style>
+		<style>
+.reveal a { color: #a00; }
+.reveal figure img {
+  margin: 0;
+}
+.reveal figure cite {
+  display: block;
+
+  font-size: 0.3em;
+  text-align: right;
+}
+.reveal .license {
+  font-size: 0.3em;
+}
+.reveal .license img {
+  margin: 0;
+}
+</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
 				<section data-markdown data-separator-notes="^Note:">
 					<textarea data-template>
-# Automating Assistive Tech with Standards
+## Automating Assistive Tech with Standards
+
+[Web Engines Hackfest](https://webengineshackfest.org/), 2025-06-02
+
+<p class="license">
+  Except where noted, this presentation is licensed via
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+CC BY SA 4.0 <img alt="Creative Commons License" style="border-width:0" src="cc-by-sa-4.0.png"></a>
+<p>
 
 ---
 
@@ -27,23 +52,35 @@
 
 <img class="r-stretch" src="bob-bust.png" alt="The Bocoup logo: a cartoon rendering of a rooster" />
 
-[Bocoup, a worker-owned tech consultancy](https://bocoup.com)  
-Mike Pennisi & Chris Cuellar, worker-owners
+[Bocoup](https://bocoup.com), a worker-owned tech consultancy  
+[Mike Pennisi](https://mikepennisi.com), a worker-owner
 
 ---
 
-### Who cares what the computer says?
+## Outline
 
-<img class="r-stretch" style="float: left" src="computers-speak.jpg" />
-
-- End users
-- Web authors
-- Browser implementers
-- Assistive technology implementers
+1. Active automation efforts
+2. The AT Driver standard and the ARIA-AT Community Group
+3. Future work
 
 ---
 
-### Modern automation efforts
+<figure>
+  <img src="cinema-paradiso-progress.png"
+    alt="A frame from the 1988 film &quot;Cinema Paradiso&quot; where Alfredo laments that &quot;Progress alaways comes too late.&quot;"
+    />
+  <cite>Image credit: <a href="https://titanus.it/">Titanus</a></cite>
+</figure>
+
+Note:
+
+When it comes to creating equitable experience for folks with disabilities, it
+often feels like this work should have been done decades ago. Be that as it
+may, it's happening now!
+
+---
+
+### Active automation efforts
 
 **[Craig Morten's GuidePup](https://www.guidepup.dev/)** - subscribe to a
 stream of speech being read by screen readers
@@ -87,18 +124,27 @@ Note:
 
 https://github.com/w3c/at-driver
 
----
+Note:
 
-## AT Driver: protocol
-
-TODO: insert a flow diagram that describes how a "press keys" user intent
-causes a screen reader to respond with a "captured output" event
+We have initially limited our focus to screen readers because you have to start
+somewhere, but as the name implies, our scope includes all types of assistive
+technology.
 
 ---
 
 ## AT Driver: in action
 
-TODO: record a running ARIA-AT test and insert it here
+<video
+  autoplay
+  loop
+  aria-label="A screen recording of a macOS system featuring a web browser operating a radio group alongside a Terminal window which streams structured data describing the key presses and spoken text"
+  src="demo-macos.mp4"
+  />
+
+Note:
+
+Here, we see the AT Driver protocol being used to automatically observe the
+behavior of VoiceOver and Safari when rendering a radio group.
 
 ---
 
@@ -114,9 +160,25 @@ TODO: record a running ARIA-AT test and insert it here
 
 ---
 
-TODO: Overlay representation of each project's purview
+## Testing Surfaces
 
-![](acacia-diagram.png)
+<figure>
+  <img src="acacia-diagram.png"
+    alt="Block diagram illustrating the browser-and-AT infrastructure."
+    />
+  <cite>Image credit: <a href="https://notes.igalia.com/p/u3q-Rq8C">Acacia (for ARIA WG)</a>, Igalia</cite>
+</figure>
+
+---
+
+## Testing Surfaces
+
+<figure>
+  <img src="diagram.png"
+    alt="A modified version of the block diagram from the previous slide. This version highlights how AT Driver interfaces with ATs, Acacia interfaces with the web browser&apos;s platform accessibility API mapping, and AOM+WebDriver interfaces with the web browser&apos;s computed accessibility tree ."
+    />
+  <cite>Image credit: <a href="https://notes.igalia.com/p/u3q-Rq8C">Acacia (for ARIA WG)</a>, Igalia</cite>
+</figure>
 
 ---
 
@@ -140,7 +202,7 @@ TODO: Overlay representation of each project's purview
     </tr>
     <tr>
       <td><a href="https://github.com/Prime-Access-Consulting/nvda-at-automation">NVDA AT Driver Server</a></td>
-      <td><a href="https://pac.bz/">Prime Access Consulting</a></td>
+      <td><a href="https://pac.bz/">Prime Access Consulting</a> &amp; <a href="https://bocoup.com">Bocoup</a></td>
       <td>screen reader add-on</td>
       <td>active</td>
     </tr>
@@ -193,6 +255,19 @@ Note:
 - This protocol could be used to write automated tests for native applications,
   though it's unclear if the use of WebSockets would be a significant
   impediment to adoption.
+
+---
+
+## Thanks!
+
+<video
+  autoplay
+  loop
+  aria-label="A screen recording of a Windows system featuring a web browser operating a radio group alongside a Powershell window which streams structured data describing the key presses and spoken text"
+  src="demo-windows.mp4"
+  />
+
+Mike Pennisi, [mike@bocoup.com](mailto:mike@bocoup.com)
 					</textarea>
 				</section>
 			</div>
